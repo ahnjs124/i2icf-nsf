@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+ <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+  <i2nsf-security-policy xmlns="urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-facing-interface">
+    <name>webserver_policy</name>
+    <rules>
+      <name>allow_access_to_webserver</name>
+      <condition>
+        <ipv4>
+          <destination-ipv4-range>
+            <start>10.0.0.58</start>
+            <end>10.0.0.58</end>
+          </destination-ipv4-range>
+        </ipv4>
+        <tcp>
+          <destination-port-number>
+            <port-numbers>
+              <start>80</start>
+              <end>80</end>
+            </port-numbers>
+          </destination-port-number>
+        </tcp>
+      </condition>
+      <action>
+        <packet-action>
+          <ingress-action>pass</ingress-action>
+        </packet-action>
+      </action>
+    </rules>
+  </i2nsf-security-policy>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+  <close-session/>
+</rpc>

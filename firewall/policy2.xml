@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+ <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+<i2nsf-security-policy xmlns="urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-facing-interface"
+    xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <name>webserver_policy</name>
+    <rules>
+        <name>block_attack</name>
+        <condition>
+            <ipv4>
+                <source-ipv4-range>
+                    <start>115.145.178.177</start>
+                    <end>115.145.178.177</end>
+                </source-ipv4-range>
+            </ipv4>
+        </condition>
+        <action>
+            <packet-action>
+                <ingress-action>drop</ingress-action>
+            </packet-action>
+        </action>
+    </rules>
+</i2nsf-security-policy>
+
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+  <close-session/>
+</rpc>
