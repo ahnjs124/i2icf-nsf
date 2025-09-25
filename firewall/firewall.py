@@ -19,6 +19,8 @@ import ietf_i2nsf_nsf_facing_interface_ns as ns
 from collections import OrderedDict
 value = _confd.Value
 
+#test firewall
+
 command = {}
 
 def duration2secs(duration):
